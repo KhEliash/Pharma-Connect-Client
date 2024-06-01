@@ -1,4 +1,5 @@
-import logo from "../../public/PharmaConnect Logo.jpg";
+import { Link } from "react-router-dom";
+import logo from "/PharmaConnect Logo.jpg";
 const Navbar = () => {
   const navLinks = (
     <>
@@ -47,7 +48,9 @@ const Navbar = () => {
           <ul className="menu menu-horizontal px-1">{navLinks}</ul>
         </div>
         <div className="navbar-end">
-          <a className="btn">Join Us</a>
+          <Link to={"/signUp"} className="btn">
+            Join Us
+          </Link>
         </div>
       </div>
     </div>
