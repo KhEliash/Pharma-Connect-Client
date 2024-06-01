@@ -1,21 +1,57 @@
+import { useContext } from "react";
+import { AuthContext } from "../../provider/AuthProvider";
+import useAxios from "../../others/Axios/useAxios";
+import Swal from "sweetalert2";
+import { useLocation, useNavigate } from "react-router-dom";
+
 const SignUp = () => {
-    const handleSignUp = e =>{
-        e.preventDefault();
-        const name = e.target.name.value;
-        const email = e.target.email.value;
-        const photo = e.target.photo.value;
-        const password = e.target.password.value;
-        const role = e.target.role.value;
-        const user = {
+  const { createUser, updateUserProfile } = useContext(AuthContext);
+  const axios = useAxios();
+  const location = useLocation();
+  const navigate = useNavigate();
+  const handleSignUp = (e) => {
+    e.preventDefault();
+    const name = e.target.name.value;
+    const email = e.target.email.value;
+    const photo = e.target.photo.value;
+    const password = e.target.password.value;
+    const role = e.target.role.value;
+    createUser(email, password)
+      .then((result) => {
+        console.log(result.user);
+        updateUserProfile(name, photo).then(() => {
+          const userInfo = {
             name: name,
             email: email,
             photo: photo,
-            password: password,
             role: role,
-        }
-        console.log(user);
-       
-    }
+          };
+          axios.post("/users", userInfo).then((res) => {
+            if (res.data.insertedId) {
+              console.log("user added to the database");
+              Swal.fire({
+                position: "top-end",
+                icon: "success",
+                title: "User created successfully.",
+                showConfirmButton: false,
+                timer: 1500,
+              });
+              navigate(location?.state ? location.state : "/");
+            }
+          });
+        });
+      })
+
+      .catch((error) => {
+        console.log(error.message);
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: `${error.message}`,
+          footer: '<a href="#">Why do I have this issue?</a>',
+        });
+      });
+  };
 
   return (
     <div>
@@ -89,8 +125,9 @@ const SignUp = () => {
                   name="role"
                   className="select select-bordered w-full"
                   required
+                  defaultValue={"hi"}
                 >
-                  <option value="" disabled selected>
+                  <option value="hi" disabled>
                     Select your role
                   </option>
                   <option value="user">User</option>
