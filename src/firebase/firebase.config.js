@@ -5,12 +5,12 @@ import { initializeApp } from "firebase/app";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyCqrNZmbxZBUM6Pg-z8MlifGT40tXGIABw",
-  authDomain: "pharma-connect-b7fd3.firebaseapp.com",
-  projectId: "pharma-connect-b7fd3",
-  storageBucket: "pharma-connect-b7fd3.appspot.com",
-  messagingSenderId: "1010567937240",
-  appId: "1:1010567937240:web:85bc4e5602eb3de35cebad"
+  apiKey: import.meta.env.VITE_apiKey,
+  authDomain: import.meta.env.VITE_authDomain,
+  projectId: import.meta.env.VITE_projectId,
+  storageBucket: import.meta.env.VITE_storageBucket,
+  messagingSenderId: import.meta.env.VITE_messagingSenderId,
+  appId: import.meta.env.VITE_appId
 };
 
 // Initialize Firebase
