@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { AuthContext } from "../../provider/AuthProvider";
 import useAxios from "../../others/Axios/useAxios";
 import Swal from "sweetalert2";
-import { useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 const SignUp = () => {
   const { createUser, updateUserProfile } = useContext(AuthContext);
@@ -55,7 +55,7 @@ const SignUp = () => {
 
   return (
     <div>
-      sign up
+       
       <div className="hero min-h-screen bg-base-200">
         <div className="hero-content flex-col lg:flex-row-reverse w-full">
           <div className="text-center lg:text-left"></div>
@@ -138,6 +138,15 @@ const SignUp = () => {
                 <button className="btn btn-primary">SignUp</button>
               </div>
             </form>
+
+            <div>
+              <p className=" text-center mb-2">
+                Already SignUp ? Please
+                <Link to={"/login"} className="text-blue-500 text-lg ml-2">
+                  Login
+                </Link>
+              </p>
+            </div>
           </div>
         </div>
       </div>
