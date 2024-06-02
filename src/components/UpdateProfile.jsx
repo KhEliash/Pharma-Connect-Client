@@ -3,27 +3,26 @@ import { useForm } from "react-hook-form";
 import { AuthContext } from "../provider/AuthProvider";
 
 const UpdateProfile = () => {
-    const {updateUserProfile}=useContext(AuthContext);
-    const {
-        register,
-        handleSubmit,
-        reset,
-        formState: { errors },
-      } = useForm();
-      const onSubmit = (data) => {
-        console.log(data);
-        updateUserProfile(data.name, data.photo).then((res) => {
-            console.log(res);
-            reset();
-        })
-        .catch((error)=>{
-            console.log(error);
-        })
-      };
+  const { updateUserProfile } = useContext(AuthContext);
+  const { register, handleSubmit, reset } = useForm();
+  const onSubmit = (data) => {
+    console.log(data);
+    updateUserProfile(data.name, data.photo)
+      .then((res) => {
+        console.log(res);
+        reset();
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
   return (
     <div className="">
-      <div className="w-full min-h-screen bg-fuchsia-500 flex items-center justify-center">
-        <form className=" bg-base-100 p-5 rounded-xl w-2/3 my-12" onSubmit={handleSubmit(onSubmit)}>
+      <div className="w-full min-h-screen   flex items-center justify-center">
+        <form
+          className=" bg-base-200 p-5 rounded-xl w-2/3 my-12 shadow-md"
+          onSubmit={handleSubmit(onSubmit)}
+        >
           <h1 className="text-5xl text-center my-5 font-bold">
             Update Profile
           </h1>
@@ -33,7 +32,7 @@ const UpdateProfile = () => {
             </div>
             <input
               type="text"
-              {...register("name")}
+              {...register("name", { required: true })}
               placeholder="Name"
               className="input input-bordered w-full"
             />
@@ -44,7 +43,7 @@ const UpdateProfile = () => {
             </div>
             <input
               type="text"
-              {...register("photo")}
+              {...register("photo", { required: true })}
               placeholder="Photo URL"
               className="input input-bordered w-full"
             />

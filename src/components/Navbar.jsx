@@ -1,17 +1,53 @@
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import logo from "/PharmaConnect Logo.jpg";
 import { useContext } from "react";
 import { AuthContext } from "../provider/AuthProvider";
 import Swal from "sweetalert2";
+import { FaCartShopping, FaShop } from "react-icons/fa6";
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
   const navLinks = (
     <>
       <li>
-        <a>Home</a>
+        <NavLink
+          to={"/"}
+          className={({ isActive }) =>
+            isActive ? " border border-blue-400 " : ""
+          }
+        >
+          Home
+        </NavLink>
       </li>
       <li>
-        <a>Shop</a>
+        <NavLink
+          to={"/shop"}
+          className={({ isActive }) =>
+            isActive ? " border border-blue-400 " : ""
+          }
+        >
+          Shop
+        </NavLink>
+      </li>
+      <li>
+        <div className="indicator">
+          <span className="indicator-item badge badge-secondary">99+</span>
+          <button className="">
+            <FaCartShopping className="text-lg"></FaCartShopping>
+          </button>
+        </div>
+      </li>
+      <li>
+        <details className="dropdown">
+          <summary className="m-1  ">Language</summary>
+          <ul className="p-2 shadow menu dropdown-content z-[1] bg-base-100 rounded-box w-52">
+            <li>
+              <a>English</a>
+            </li>
+            <li>
+              <a>Bangla</a>
+            </li>
+          </ul>
+        </details>
       </li>
     </>
   );
@@ -49,7 +85,7 @@ const Navbar = () => {
           </a>
         </div>
         <div className="navbar-center hidden lg:flex">
-          <ul className="menu menu-horizontal px-1">{navLinks}</ul>
+          <ul className="menu menu-horizontal px-1 space-x-2">{navLinks}</ul>
         </div>
         <div className="navbar-end">
           {user ? (
@@ -72,7 +108,7 @@ const Navbar = () => {
                   className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52"
                 >
                   <li>
-                    <Link to={'/updateProfile'}>Update Profile</Link>
+                    <Link to={"/updateProfile"}>Update Profile</Link>
                   </li>
                   <li>
                     <Link>Dashboard</Link>
