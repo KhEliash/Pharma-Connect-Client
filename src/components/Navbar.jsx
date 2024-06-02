@@ -2,8 +2,9 @@ import { Link } from "react-router-dom";
 import logo from "/PharmaConnect Logo.jpg";
 import { useContext } from "react";
 import { AuthContext } from "../provider/AuthProvider";
+import Swal from "sweetalert2";
 const Navbar = () => {
-  const { user } = useContext(AuthContext);
+  const { user, logOut } = useContext(AuthContext);
   const navLinks = (
     <>
       <li>
@@ -62,7 +63,7 @@ const Navbar = () => {
                   <div className="w-10 rounded-full">
                     <img
                       alt="Tailwind CSS Navbar component"
-                      src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg"
+                      src={user?.photoURL}
                     />
                   </div>
                 </div>
@@ -71,16 +72,19 @@ const Navbar = () => {
                   className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52"
                 >
                   <li>
-                    <a className="justify-between">
-                      Profile
-                      <span className="badge">New</span>
+                    <Link to={'/updateProfile'}>Update Profile</Link>
+                  </li>
+                  <li>
+                    <Link>Dashboard</Link>
+                  </li>
+                  <li>
+                    <a
+                      onClick={() => {
+                        logOut();
+                      }}
+                    >
+                      Logout
                     </a>
-                  </li>
-                  <li>
-                    <a>Settings</a>
-                  </li>
-                  <li>
-                    <a>Logout</a>
                   </li>
                 </ul>
               </div>

@@ -7,16 +7,14 @@ import {
   signInWithPopup,
   signOut,
   GoogleAuthProvider,
-  
   updateProfile,
 } from "firebase/auth";
- import axios from "axios";
+import axios from "axios";
 import app from "../firebase/firebase.config";
 
 export const AuthContext = createContext(null);
 const auth = getAuth(app);
 const googleProvider = new GoogleAuthProvider();
- 
 
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
@@ -46,7 +44,6 @@ const AuthProvider = ({ children }) => {
     setLoading(true);
     return signInWithPopup(auth, googleProvider);
   };
-  
 
   const logOut = () => {
     setLoading(true);
@@ -57,23 +54,22 @@ const AuthProvider = ({ children }) => {
     const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
       // console.log(currentUser);
       const userEmail = currentUser?.email || user?.email;
-      const loggedUser = {email: userEmail };
+      const loggedUser = { email: userEmail };
       setUser(currentUser);
       setLoading(false);
-      // token 
-    //   if(currentUser){
-        
-     
-    //     axios.post('https://altinfohub.vercel.app/jwt',loggedUser,{withCredentials: true})
-    //     .then(res=>{
-    //       // console.log('toekn',res.data);
-    //     })
-    //   }else{
-    //     axios.post('https://altinfohub.vercel.app/logout',loggedUser,{withCredentials:true})
-    //     .then(res=>{
-    //       // console.log(res.data);
-    //     })
-    //   }
+      // token
+      //   if(currentUser){
+
+      //     axios.post('https://altinfohub.vercel.app/jwt',loggedUser,{withCredentials: true})
+      //     .then(res=>{
+      //       // console.log('toekn',res.data);
+      //     })
+      //   }else{
+      //     axios.post('https://altinfohub.vercel.app/logout',loggedUser,{withCredentials:true})
+      //     .then(res=>{
+      //       // console.log(res.data);
+      //     })
+      //   }
     });
     return () => {
       unSubscribe();
@@ -86,7 +82,7 @@ const AuthProvider = ({ children }) => {
     signIn,
     loading,
     googleLogIn,
-    
+
     logOut,
     updateUserProfile,
   };

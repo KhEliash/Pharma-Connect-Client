@@ -1,14 +1,17 @@
 import { useContext } from "react";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../provider/AuthProvider";
 import Swal from "sweetalert2";
 
 const Login = () => {
   const { signIn } = useContext(AuthContext);
+  const location = useLocation();
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm();
   const onSubmit = (data) => {
@@ -22,6 +25,8 @@ const Login = () => {
           showConfirmButton: false,
           timer: 1500,
         });
+        navigate(location?.state ? location.state : "/");
+        reset();
       })
       .catch((error) => {
         console.log(error.message);
