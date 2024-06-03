@@ -3,11 +3,15 @@ import { useForm } from "react-hook-form";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../provider/AuthProvider";
 import Swal from "sweetalert2";
+import { FaGoogle } from "react-icons/fa6";
+import useAxios from "../../others/Axios/useAxios";
+import { FcGoogle } from "react-icons/fc";
 
 const Login = () => {
-  const { signIn } = useContext(AuthContext);
+  const { signIn ,googleLogIn} = useContext(AuthContext);
   const location = useLocation();
   const navigate = useNavigate();
+  const axios = useAxios();
   const {
     register,
     handleSubmit,
@@ -40,6 +44,37 @@ const Login = () => {
 
     console.log(data);
   };
+  const handleGoogle =()=>{
+    googleLogIn()
+   .then((res) => {
+     console.log(res);
+     Swal.fire({
+       position: "top-end",
+       icon: "success",
+       title: "User log In successfully.",
+       showConfirmButton: false,
+       timer: 1500,
+     });
+     const userInfo = {
+       name: res.user.displayName,
+       email: res.user.email,
+       photo: res.user.photoURL,
+       role: "user",
+     }
+     axios.post("/users", userInfo)
+     navigate(location?.state? location.state : "/");
+     
+   })
+   .catch((error)=>{
+     console.log(error.message);
+     Swal.fire({
+       icon: "error",
+       title: "Oops...",
+       text: `${error.message}`,
+       
+     });
+   })
+  }
   return (
     <div>
       <div className="hero min-h-screen bg-base-200">
@@ -92,6 +127,15 @@ const Login = () => {
               </div>
             </form>
 
+            <div className="divider mt-0"></div>
+            <div className=" flex justify-center">
+              <button
+              onClick={handleGoogle}
+              className="flex items-center gap-2 btn btn-md bg-[#F8F8F8] shadow-md mb-3">
+                <FcGoogle  className="text-lg" />
+                Google
+              </button>
+            </div>
             <div>
               <p className=" text-center mb-2">
                 Do not register ? Please

@@ -28,7 +28,7 @@ const SignUp = () => {
           };
           axios.post("/users", userInfo).then((res) => {
             if (res.data.insertedId) {
-              console.log("user added to the database");
+             
               Swal.fire({
                 position: "top-end",
                 icon: "success",
@@ -38,7 +38,10 @@ const SignUp = () => {
               });
               navigate(location?.state ? location.state : "/");
             }
+           
           });
+
+           
         });
       })
 
@@ -48,14 +51,13 @@ const SignUp = () => {
           icon: "error",
           title: "Oops...",
           text: `${error.message}`,
-          footer: '<a href="#">Why do I have this issue?</a>',
+           
         });
       });
   };
 
   return (
     <div>
-       
       <div className="hero min-h-screen bg-base-200">
         <div className="hero-content flex-col lg:flex-row-reverse w-full">
           <div className="text-center lg:text-left"></div>
