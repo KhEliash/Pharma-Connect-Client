@@ -111,7 +111,7 @@ const Navbar = () => {
                     <Link to={"/updateProfile"}>Update Profile</Link>
                   </li>
                   <li>
-                    <Link>Dashboard</Link>
+                    <Link to={'dashboard'}>Dashboard</Link>
                   </li>
                   <li>
                     <a
