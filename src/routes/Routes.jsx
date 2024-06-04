@@ -8,10 +8,15 @@ import Shop from "../pages/shop/Shop";
 import Dashboard from "../layout/Dashboard";
 import AdminHome from "../pages/dashboard/admin/AdminHome";
 import ManageUsers from "../pages/dashboard/admin/ManageUsers";
-import ManageCategory from "../pages/dashboard/ManageCategory";
-import ManagePayment from "../pages/dashboard/admin/ManagePayment";
+ import ManagePayment from "../pages/dashboard/admin/ManagePayment";
 import SalesReport from "../pages/dashboard/admin/SalesReport";
 import AdManage from "../pages/dashboard/admin/AdManage";
+import ManageCategory from "../pages/dashboard/admin/ManageCategory";
+import SellerHome from "../pages/dashboard/seller/SellerHome";
+import MedicinesManage from "../pages/dashboard/seller/MedicinesManage";
+import PaymentHistory from "../pages/dashboard/seller/PaymentHistory";
+import AdAsk from "../pages/dashboard/seller/AdAsk";
+import PaymentHistoryy from "../pages/dashboard/user/PaymentHistoryy";
 
 const router = createBrowserRouter([
   {
@@ -69,6 +74,28 @@ const router = createBrowserRouter([
         path: "adManage",
         element: <AdManage></AdManage>,
       },
+      // seller routes
+      {
+        path: "sellerHome",
+        element: <SellerHome></SellerHome>,
+      },
+      {
+        path: 'sellerMedicine',
+        element: <MedicinesManage></MedicinesManage>
+      },
+      {
+        path: 'paymentHistory',
+        element: <PaymentHistory></PaymentHistory>
+      },
+      {
+        path: 'askForAdd',
+        element: <AdAsk></AdAsk>
+      },
+      // user routes
+      {
+        path: 'userPayHistory',
+        element: <PaymentHistoryy></PaymentHistoryy>
+      }
     ],
   },
 ]);

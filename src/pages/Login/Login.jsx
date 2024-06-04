@@ -3,8 +3,7 @@ import { useForm } from "react-hook-form";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../provider/AuthProvider";
 import Swal from "sweetalert2";
-import { FaGoogle } from "react-icons/fa6";
-import useAxios from "../../others/Axios/useAxios";
+ import useAxios from "../../others/Axios/useAxios";
 import { FcGoogle } from "react-icons/fc";
 
 const Login = () => {
