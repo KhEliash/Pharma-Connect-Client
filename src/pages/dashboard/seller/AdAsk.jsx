@@ -4,10 +4,21 @@ import { AuthContext } from "../../../provider/AuthProvider";
 
 import useAxios from "../../../others/Axios/useAxios";
 import Swal from "sweetalert2";
+import { useQuery } from "@tanstack/react-query";
 
 const AdAsk = () => {
   const { user } = useContext(AuthContext);
   const axios = useAxios();
+
+  const { data: myAdReq = [], refetch } = useQuery({
+    queryKey: ["email", user?.email],
+    queryFn: async () => {
+      const res = await axios.get(`/sellerAdds/${user?.email}`);
+      return res.data;
+    },
+  });
+  console.log(myAdReq);
+
   const {
     register,
     handleSubmit,
@@ -32,6 +43,7 @@ const AdAsk = () => {
           showConfirmButton: false,
           timer: 1500,
         });
+        refetch();
       }
     });
     // console.log(adItem);
@@ -105,6 +117,43 @@ const AdAsk = () => {
         </dialog>
       </div>
       <hr />
+      <div>
+        <div className="overflow-x-auto">
+          <table className="table">
+            {/* head */}
+            <thead>
+              <tr>
+                <th>No.</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Favorite Color</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              {/* row 1 */}
+              {myAdReq.map((item, index) => (
+                <tr key={item._id}>
+                  <th>{index + 1}</th>
+                  <td>
+                    <div>
+                      <div className="font-bold">{item.name}</div>
+                    </div>
+                  </td>
+                  <td>{item.email}</td>
+                  <td>
+                    <img
+                      src={item.image}
+                      alt=""
+                      className="w-24 h-12 rounded-md"
+                    />
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
   );
 };
