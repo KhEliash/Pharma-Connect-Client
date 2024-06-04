@@ -1,5 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import useAxios from "../../../others/Axios/useAxios";
+import Swal from "sweetalert2";
 
 const AdManage = () => {
   const axios = useAxios();
@@ -15,18 +16,46 @@ const AdManage = () => {
 
   const handleToggle = (e, id) => {
     // console.log(e.target.checked);
+
     if (e.target.checked) {
       console.log(id);
       axios
         .patch(`/sellerAdds/admin/${id}`)
         .then((res) => {
-          console.log(res.data);
+        //   console.log(res.data);
+          if (res.data.modifiedCount > 0) {
+            Swal.fire({
+              position: "top-end",
+              icon: "success",
+              title: "Advertisement added successfully.",
+              showConfirmButton: false,
+              timer: 1500,
+            });
+          }
         })
         .catch((error) => {
           console.log(error.message);
         });
     } else {
-      console.log(id);
+      console.log("un", id);
+      axios
+        .patch(`/sellerAddsRemove/admin/${id}`)
+        .then((res) => {
+        //   console.log(res.data);
+          if (res.data.modifiedCount > 0) {
+            Swal.fire({
+              position: "top-end",
+              icon: "success",
+              title: "Advertisement removed successfully.",
+              showConfirmButton: false,
+              timer: 1500,
+            });
+          }
+        })
+        .catch((error) => {
+          console.log(error.message);
+        });
+      // refetch();
     }
   };
 
@@ -74,7 +103,7 @@ const AdManage = () => {
                           <input
                             type="checkbox"
                             className="toggle"
-                            checked={true}
+                            checked
                             onChange={(e) => handleToggle(e, item._id)}
                           />
                         </>
