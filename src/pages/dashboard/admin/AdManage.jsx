@@ -14,8 +14,20 @@ const AdManage = () => {
   console.log(allAdReq);
 
   const handleToggle = (e, id) => {
-    console.log(e.target.checked);
-    console.log(id);
+    // console.log(e.target.checked);
+    if (e.target.checked) {
+      console.log(id);
+      axios
+        .patch(`/sellerAdds/admin/${id}`)
+        .then((res) => {
+          console.log(res.data);
+        })
+        .catch((error) => {
+          console.log(error.message);
+        });
+    } else {
+      console.log(id);
+    }
   };
 
   return (
@@ -57,11 +69,24 @@ const AdManage = () => {
                       />
                     </td>
                     <td>
-                      <input
-                        type="checkbox"
-                        className="toggle"
-                        onChange={(e) => handleToggle(e, item._id)}
-                      />
+                      {item.status === "confirmed" ? (
+                        <>
+                          <input
+                            type="checkbox"
+                            className="toggle"
+                            checked={true}
+                            onChange={(e) => handleToggle(e, item._id)}
+                          />
+                        </>
+                      ) : (
+                        <>
+                          <input
+                            type="checkbox"
+                            className="toggle"
+                            onChange={(e) => handleToggle(e, item._id)}
+                          />
+                        </>
+                      )}
                     </td>
                   </tr>
                 ))}
