@@ -11,6 +11,7 @@ const AdManage = () => {
       const res = await axios.get("/sellerAdds");
       return res.data;
     },
+    refetchInterval: 1000,
   });
   console.log(allAdReq);
 
@@ -22,7 +23,7 @@ const AdManage = () => {
       axios
         .patch(`/sellerAdds/admin/${id}`)
         .then((res) => {
-        //   console.log(res.data);
+          //   console.log(res.data);
           if (res.data.modifiedCount > 0) {
             Swal.fire({
               position: "top-end",
@@ -37,11 +38,11 @@ const AdManage = () => {
           console.log(error.message);
         });
     } else {
-      console.log("un", id);
+    //   console.log("un", id);
       axios
         .patch(`/sellerAddsRemove/admin/${id}`)
         .then((res) => {
-        //   console.log(res.data);
+          //   console.log(res.data);
           if (res.data.modifiedCount > 0) {
             Swal.fire({
               position: "top-end",
