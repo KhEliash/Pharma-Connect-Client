@@ -17,6 +17,7 @@ import MedicinesManage from "../pages/dashboard/seller/MedicinesManage";
 import PaymentHistory from "../pages/dashboard/seller/PaymentHistory";
 import AdAsk from "../pages/dashboard/seller/AdAsk";
 import PaymentHistoryy from "../pages/dashboard/user/PaymentHistoryy";
+ import UpdateCategory from './../pages/dashboard/admin/UpdateCategory';
 
 const router = createBrowserRouter([
   {
@@ -43,6 +44,7 @@ const router = createBrowserRouter([
         path: "/shop",
         element: <Shop></Shop>,
       },
+      
     ],
   },
   {
@@ -74,6 +76,11 @@ const router = createBrowserRouter([
         path: "adManage",
         element: <AdManage></AdManage>,
       },
+      {
+        path: 'updateCategory/:id',
+        element: <UpdateCategory></UpdateCategory>
+      },
+    
       // seller routes
       {
         path: "sellerHome",
