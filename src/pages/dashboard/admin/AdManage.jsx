@@ -13,7 +13,7 @@ const AdManage = () => {
     },
     refetchInterval: 1000,
   });
-  console.log(allAdReq);
+  // console.log(allAdReq);
 
   const handleToggle = (e, id) => {
     // console.log(e.target.checked);

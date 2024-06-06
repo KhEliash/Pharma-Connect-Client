@@ -31,7 +31,7 @@ const Slider = () => {
     refetchInterval: 1000,
   });
 
-  console.log(allAdReq);
+  // console.log(allAdReq);
   return (
     <div>
       {isLoading ? (
