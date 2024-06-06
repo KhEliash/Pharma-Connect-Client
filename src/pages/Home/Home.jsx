@@ -1,3 +1,4 @@
+import Category from "../../components/Category";
 import Slider from "../../components/Slider";
 
  
@@ -7,6 +8,7 @@ const Home = () => {
         <div>
            
             <Slider></Slider>
+            <Category></Category>
         </div>
     );
 };

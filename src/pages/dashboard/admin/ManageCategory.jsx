@@ -2,7 +2,6 @@ import { useForm } from "react-hook-form";
 import useAxios from "../../../others/Axios/useAxios";
 import Swal from "sweetalert2";
 import { useQuery } from "@tanstack/react-query";
-import { FcDeleteDatabase } from "react-icons/fc";
 import { MdDelete, MdSecurityUpdateGood } from "react-icons/md";
 import { Link } from "react-router-dom";
 
@@ -20,7 +19,7 @@ const ManageCategory = () => {
       image: data.image,
     };
     axios.post("/category", info).then((res) => {
-      console.log(res.data);
+    //   console.log(res.data);
       if (res.data.insertedId) {
         reset();
         Swal.fire({
@@ -28,6 +27,7 @@ const ManageCategory = () => {
           icon: "success",
           title: "Category created successfully.",
         });
+        refetch()
       } else {
         Swal.fire({
           position: "top-end",
@@ -36,8 +36,6 @@ const ManageCategory = () => {
         });
       }
     });
-    console.log(info);
-    // reset();
   };
 
   const { data: category = [], refetch } = useQuery({
@@ -46,9 +44,35 @@ const ManageCategory = () => {
       const res = await axios.get("/category");
       return res.data;
     },
-    refetchInterval: 1000,
+    // refetchInterval: 1000,
   });
-  console.log(category);
+//   console.log(category);
+  const handleDelete = (id) => {
+ 
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axios.delete(`/category/${id}`).then((res) => {
+          // console.log(data);
+          if (res.data.deletedCount > 0) {
+            Swal.fire({
+              title: "Deleted!",
+              text: "Your file has been deleted.",
+              icon: "success",
+            });
+            refetch();
+          }
+        });
+      }
+    });
+  };
   return (
     <div>
       <div>
@@ -150,7 +174,10 @@ const ManageCategory = () => {
                         </Link>
                       </td>
                       <td>
-                        <button className="btn-ghost">
+                        <button
+                          onClick={() => handleDelete(item._id)}
+                          className="btn-ghost"
+                        >
                           <MdDelete className="text-red-500 text-xl" />
                         </button>
                       </td>
