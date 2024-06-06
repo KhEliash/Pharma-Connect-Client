@@ -1,7 +1,13 @@
 import { useQuery } from "@tanstack/react-query";
 import useAxios from "../others/Axios/useAxios";
 // import Swiper core and required modules
-import { Navigation, Pagination, Scrollbar, A11y } from "swiper/modules";
+import {
+  Navigation,
+  Pagination,
+  Scrollbar,
+  A11y,
+  Autoplay,
+} from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 // Import Swiper styles
 import "swiper/css";
@@ -39,29 +45,32 @@ const Slider = () => {
           <div>
             <Swiper
               // install Swiper modules
-              modules={[Navigation, Pagination, Scrollbar, A11y]}
+              modules={[Navigation, Pagination, Scrollbar, A11y, Autoplay]}
               spaceBetween={50}
               slidesPerView={1}
-              //   navigation
+              centeredSlides={true}
+              autoplay={{
+                delay: 2500,
+                disableOnInteraction: false,
+              }}
+              loop={true}
+              navigation={true}
               pagination={{ clickable: true }}
-              //   scrollbar={{ draggable: true }}
-              //   onSwiper={(swiper) => console.log(swiper)}
-              //   onSlideChange={() => console.log("slide change")}
+              className="rounded-md"
             >
               {allAdReq.map((e) => (
-                <SwiperSlide key={e._id}>
-                    <div className="flex bg-red-300">
-                        <div className="flex-1">
-                            <h1>{e.name}</h1>
-                            <p>{e.description}</p>
-                        </div>
-                       <div className="flex-1">
-                       <img src={e.image} alt="" className="w-full h-[500px]"/>
-                       </div>
+                <SwiperSlide key={e._id} className="rounded-md">
+                  <div className="flex bg-base-200">
+                    <div className="flex flex-1 flex-col justify-center items-center space-y-2">
+                      <h1 className="text-5xl font-bold ">{e.name}</h1>
+                      <p>{e.description}</p>
                     </div>
-                    </SwiperSlide>
+                    <div className="flex-1">
+                      <img src={e.image} alt="" className="w-full h-[500px]" />
+                    </div>
+                  </div>
+                </SwiperSlide>
               ))}
-              ...
             </Swiper>
           </div>
         </>
