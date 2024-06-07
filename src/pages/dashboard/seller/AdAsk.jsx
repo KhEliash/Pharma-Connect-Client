@@ -17,7 +17,7 @@ const AdAsk = () => {
       return res.data;
     },
   });
-  console.log(myAdReq);
+  // console.log(myAdReq);
 
   const {
     register,

@@ -4,6 +4,8 @@ import Swal from "sweetalert2";
 import { useQuery } from "@tanstack/react-query";
 import { MdDelete, MdSecurityUpdateGood } from "react-icons/md";
 import { Link } from "react-router-dom";
+import { FcEditImage } from "react-icons/fc";
+import { FaEdit } from "react-icons/fa";
 
 const ManageCategory = () => {
   const axios = useAxios();
@@ -169,7 +171,9 @@ const ManageCategory = () => {
                       <td>
                         <Link to={`/dashboard/updateCategory/${item._id}`}>
                           <button className="btn-ghost text-green-500 text-xl">
-                            <MdSecurityUpdateGood />
+                            {/* <MdSecurityUpdateGood /> */}
+                            {/* <FaEdit/> */}
+                            <FcEditImage/>
                           </button>
                         </Link>
                       </td>
