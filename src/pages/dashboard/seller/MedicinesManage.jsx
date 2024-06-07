@@ -15,14 +15,18 @@ const MedicinesManage = () => {
     // formState: { errors },
   } = useForm();
 
-  const { data: myMedicine = [], refetch } = useQuery({
+  const {
+    data: myMedicine = [],
+    refetch,
+    isLoading,
+  } = useQuery({
     queryKey: ["email", user?.email],
     queryFn: async () => {
       const res = await axios.get(`/medicines/${user?.email}`);
       return res.data;
     },
   });
-  console.log(myMedicine);
+//   console.log(myMedicine);
 
   const onSubmit = (data) => {
     const medicine = {
@@ -237,6 +241,8 @@ const MedicinesManage = () => {
       </div>
       <hr />
       <div>
+        {/* isLoading show loading text */}
+
         <div className="overflow-x-auto">
           <table className="table">
             {/* head */}

@@ -18,6 +18,7 @@ import PaymentHistory from "../pages/dashboard/seller/PaymentHistory";
 import AdAsk from "../pages/dashboard/seller/AdAsk";
 import PaymentHistoryy from "../pages/dashboard/user/PaymentHistoryy";
  import UpdateCategory from './../pages/dashboard/admin/UpdateCategory';
+import CategoryDetails from "../components/CategoryDetails";
 
 const router = createBrowserRouter([
   {
@@ -44,6 +45,10 @@ const router = createBrowserRouter([
         path: "/shop",
         element: <Shop></Shop>,
       },
+      {
+        path: '/categoryDetails/:category',
+        element: <CategoryDetails></CategoryDetails>
+      }
       
     ],
   },

@@ -1,5 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import useAxios from "../others/Axios/useAxios";
+import { Link } from "react-router-dom";
 
 const Category = () => {
   const axios = useAxios();
@@ -16,7 +17,7 @@ const Category = () => {
     },
     // refetchInterval: 1000,
   });
-  //   console.log(category);
+    console.log(category);
 
   return (
     <div>
@@ -29,7 +30,8 @@ const Category = () => {
           <h1 className="text-3xl font-bold text-center my-12"> Category</h1>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
             {category.map((item) => (
-              <div key={item._id} className="card  bg-base-100 shadow-xl">
+           <Link  key={item._id} to={`/categoryDetails/${item.name}`}>
+              <div className="card  bg-base-100 shadow-xl">
                 <figure>
                   <img
                     src={item.image}
@@ -43,6 +45,7 @@ const Category = () => {
                   </h2>
                 </div>
               </div>
+           </Link>
             ))}
           </div>
         </div>
