@@ -1,23 +1,66 @@
 import { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { AuthContext } from "../../../provider/AuthProvider";
+import useAxios from "../../../others/Axios/useAxios";
+import Swal from "sweetalert2";
+import { useQuery } from "@tanstack/react-query";
 
 const MedicinesManage = () => {
   const { user } = useContext(AuthContext);
+  const axios = useAxios();
   const {
     register,
     handleSubmit,
     reset,
     // formState: { errors },
   } = useForm();
+
+  const { data: myMedicine = [], refetch } = useQuery({
+    queryKey: ["email", user?.email],
+    queryFn: async () => {
+      const res = await axios.get(`/medicines/${user?.email}`);
+      return res.data;
+    },
+  });
+  console.log(myMedicine);
+
   const onSubmit = (data) => {
-    const adItem = {
+    const medicine = {
       name: data.name,
       image: data.image,
       email: user.email,
       description: data.description,
+      price: data.price,
+      category: data.category,
+      discount: data.discount,
+      genericName: data.genericName,
+      company: data.company,
+      unit: data.unit,
     };
-    console.log(data);
+    axios
+      .post("/medicines", medicine)
+      .then((res) => {
+        // console.log(res.data);
+        if (res.data.insertedId) {
+          reset();
+          refetch();
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "Medicine created successfully.",
+            timer: 1500,
+            showConfirmButton: false,
+          });
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: `${error.message}`,
+        });
+      });
   };
   return (
     <div>
@@ -28,7 +71,7 @@ const MedicinesManage = () => {
           className="btn"
           onClick={() => document.getElementById("my_modal_5").showModal()}
         >
-          Add Medicine
+          Medicine
         </button>
         <dialog id="my_modal_5" className="modal modal-bottom sm:modal-middle">
           <div className="modal-box">
@@ -193,6 +236,46 @@ const MedicinesManage = () => {
         </dialog>
       </div>
       <hr />
+      <div>
+        <div className="overflow-x-auto">
+          <table className="table">
+            {/* head */}
+            <thead>
+              <tr>
+                <th>No.</th>
+                <th>Medicine Name</th>
+                <th>Category</th>
+                <th>Image</th>
+                <th>Price</th>
+              </tr>
+            </thead>
+            <tbody>
+              {/* row 1 */}
+              {myMedicine.map((item, index) => (
+                <tr key={item._id}>
+                  <th>{index + 1}</th>
+                  <td>
+                    <div>
+                      <div className="font-bold">{item.name}</div>
+                    </div>
+                  </td>
+                  <td>{item.category}</td>
+                  <td>
+                    <img
+                      src={item.image}
+                      alt=""
+                      className="w-24 h-12 rounded-md"
+                    />
+                  </td>
+                  <td className="flex gap-1">
+                    {item.price} <span>tk</span>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
   );
 };
