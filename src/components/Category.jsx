@@ -17,7 +17,7 @@ const Category = () => {
     },
     // refetchInterval: 1000,
   });
-    console.log(category);
+    // console.log(category);
 
   return (
     <div>

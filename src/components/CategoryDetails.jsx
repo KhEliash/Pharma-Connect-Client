@@ -3,8 +3,12 @@ import useAxios from "../others/Axios/useAxios";
 import { useQuery } from "@tanstack/react-query";
 import { BsEye } from "react-icons/bs";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { AuthContext } from "./../provider/AuthProvider";
+import { useContext } from "react";
+import Swal from "sweetalert2";
 
 const CategoryDetails = () => {
+  const { user } = useContext(AuthContext);
   const { category } = useParams();
   // console.log(category);
   const axios = useAxios();
@@ -21,13 +25,55 @@ const CategoryDetails = () => {
   });
   // console.log(myCategory);
 
+  const handleSelect = (item) => {
+    const { category, company, genericName, name, image, price, unit, _id } =
+      item;
+    const cartItem = {
+      ID: _id,
+      email: user?.email,
+      name,
+      image,
+      category,
+      company,
+      genericName,
+      price,
+      unit,
+    };
+    axios.post("/cart", cartItem).then((res) => {
+      // console.log(res.data);
+      if (res.data.insertedId) {
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "Medicine added to cart successfully.",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      } else {
+        Swal.fire({
+          position: "top-end",
+          icon: "error",
+          title: "Medicine already added to cart.",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      }
+    });
+  };
+
   return (
     <div>
       <h1 className="text-center text-3xl font-bold mt-6 mb-6">{category}</h1>
       <div>
-      
+        {myCategory == "" && (
+          <>
+            {" "}
+            <p className="text-center text-red-500 font-bold w-full">
+              No medicine added yet
+            </p>
+          </>
+        )}
         <div className="overflow-x-auto">
-          
           <table className="table">
             {/* head */}
             <thead>
@@ -40,7 +86,6 @@ const CategoryDetails = () => {
               </tr>
             </thead>
             <tbody>
-            {myCategory== '' && <p className="text-center bg-red-400 w-full">No medicine added yet</p>}
               {/* row 1 */}
               {myCategory.map((item, index) => (
                 <tr key={item._id}>
@@ -88,21 +133,21 @@ const CategoryDetails = () => {
                               </span>{" "}
                               {item.description}
                             </p>
-                           
-                         <div className="flex justify-between">
-                         <p className="text-xl text-green-600">
-                              <span className="text-blue-600 font-bold">
-                                Price :
-                              </span>{" "}
-                              {item.price} tk
-                            </p>
-                            <p>
-                              <span className="text-blue-600 font-bold">
-                                Unit :
-                              </span>{" "}
-                              {item.unit} ml/mg
-                            </p>
-                         </div>
+
+                            <div className="flex justify-between">
+                              <p className="text-xl text-green-600">
+                                <span className="text-blue-600 font-bold">
+                                  Price :
+                                </span>{" "}
+                                {item.price} tk
+                              </p>
+                              <p>
+                                <span className="text-blue-600 font-bold">
+                                  Unit :
+                                </span>{" "}
+                                {item.unit} ml/mg
+                              </p>
+                            </div>
                             <p>
                               <span className="text-blue-600 font-bold">
                                 Generic Name:
@@ -134,7 +179,12 @@ const CategoryDetails = () => {
                     </dialog>
                   </td>
                   <td className="flex gap-1">
-                    <button className="btn btn-primary">Select</button>
+                    <button
+                      className="btn btn-primary"
+                      onClick={() => handleSelect(item)}
+                    >
+                      Select
+                    </button>
                   </td>
                 </tr>
               ))}
