@@ -22,11 +22,11 @@ const MedicinesManage = () => {
   } = useQuery({
     queryKey: ["email", user?.email],
     queryFn: async () => {
-      const res = await axios.get(`/medicines/${user?.email}`);
+      const res = await axios.get(`/medicinesSeller/${user?.email}`);
       return res.data;
     },
   });
-//   console.log(myMedicine);
+  console.log(myMedicine);
 
   const onSubmit = (data) => {
     const medicine = {
@@ -240,48 +240,52 @@ const MedicinesManage = () => {
         </dialog>
       </div>
       <hr />
-      <div>
-        {/* isLoading show loading text */}
-
-        <div className="overflow-x-auto">
-          <table className="table">
-            {/* head */}
-            <thead>
-              <tr>
-                <th>No.</th>
-                <th>Medicine Name</th>
-                <th>Category</th>
-                <th>Image</th>
-                <th>Price</th>
-              </tr>
-            </thead>
-            <tbody>
-              {/* row 1 */}
-              {myMedicine.map((item, index) => (
-                <tr key={item._id}>
-                  <th>{index + 1}</th>
-                  <td>
-                    <div>
-                      <div className="font-bold">{item.name}</div>
-                    </div>
-                  </td>
-                  <td>{item.category}</td>
-                  <td>
-                    <img
-                      src={item.image}
-                      alt=""
-                      className="w-24 h-12 rounded-md"
-                    />
-                  </td>
-                  <td className="flex gap-1">
-                    {item.price} <span>tk</span>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+      {isLoading ? (
+        <div className="w-full h-screen flex items-center justify-center">
+          <div className="w-16 h-16 border-4 border-dashed rounded-full animate-spin dark:border-violet-600"></div>
         </div>
-      </div>
+      ) : (
+        <div>
+          <div className="overflow-x-auto">
+            <table className="table">
+              {/* head */}
+              <thead>
+                <tr>
+                  <th>No.</th>
+                  <th>Medicine Name</th>
+                  <th>Category</th>
+                  <th>Image</th>
+                  <th>Price</th>
+                </tr>
+              </thead>
+              <tbody>
+                {/* row 1 */}
+                {myMedicine.map((item, index) => (
+                  <tr key={item._id}>
+                    <th>{index + 1}</th>
+                    <td>
+                      <div>
+                        <div className="font-bold">{item.name}</div>
+                      </div>
+                    </td>
+                    <td>{item.category}</td>
+                    <td>
+                      <img
+                        src={item.image}
+                        alt=""
+                        className="w-24 h-12 rounded-md"
+                      />
+                    </td>
+                    <td className="flex gap-1">
+                      {item.price} <span>tk</span>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

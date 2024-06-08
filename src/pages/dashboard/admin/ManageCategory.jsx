@@ -21,7 +21,7 @@ const ManageCategory = () => {
       image: data.image,
     };
     axios.post("/category", info).then((res) => {
-    //   console.log(res.data);
+      //   console.log(res.data);
       if (res.data.insertedId) {
         reset();
         Swal.fire({
@@ -29,7 +29,7 @@ const ManageCategory = () => {
           icon: "success",
           title: "Category created successfully.",
         });
-        refetch()
+        refetch();
       } else {
         Swal.fire({
           position: "top-end",
@@ -40,7 +40,11 @@ const ManageCategory = () => {
     });
   };
 
-  const { data: category = [], refetch } = useQuery({
+  const {
+    data: category = [],
+    refetch,
+    isLoading,
+  } = useQuery({
     queryKey: ["email"],
     queryFn: async () => {
       const res = await axios.get("/category");
@@ -48,9 +52,8 @@ const ManageCategory = () => {
     },
     // refetchInterval: 1000,
   });
-//   console.log(category);
+  //   console.log(category);
   const handleDelete = (id) => {
- 
     Swal.fire({
       title: "Are you sure?",
       text: "You won't be able to revert this!",
@@ -136,62 +139,70 @@ const ManageCategory = () => {
           </dialog>
         </div>
         <hr />
-        <div>
+        {isLoading ? (
           <div>
-            <div className="overflow-x-auto">
-              <table className="table">
-                {/* head */}
-                <thead>
-                  <tr>
-                    <th>No.</th>
-                    <th>Name</th>
-                    <th>Image</th>
-                    <th>Update</th>
-                    <th>Delete</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {/* row 1 */}
-                  {category.map((item, index) => (
-                    <tr key={item._id}>
-                      <th>{index + 1}</th>
-                      <td>
-                        <div>
-                          <div className="font-bold">{item.name}</div>
-                        </div>
-                      </td>
-
-                      <td>
-                        <img
-                          src={item.image}
-                          alt=""
-                          className="w-24 h-12 rounded-md"
-                        />
-                      </td>
-                      <td>
-                        <Link to={`/dashboard/updateCategory/${item._id}`}>
-                          <button className="btn-ghost text-green-500 text-xl">
-                            {/* <MdSecurityUpdateGood /> */}
-                            {/* <FaEdit/> */}
-                            <FcEditImage/>
-                          </button>
-                        </Link>
-                      </td>
-                      <td>
-                        <button
-                          onClick={() => handleDelete(item._id)}
-                          className="btn-ghost"
-                        >
-                          <MdDelete className="text-red-500 text-xl" />
-                        </button>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
+            <div className="w-full h-screen flex items-center justify-center">
+              <div className="w-16 h-16 border-4 border-dashed rounded-full animate-spin dark:border-violet-600"></div>
             </div>
           </div>
-        </div>
+        ) : (
+          <div>
+            <div>
+              <div className="overflow-x-auto">
+                <table className="table">
+                  {/* head */}
+                  <thead>
+                    <tr>
+                      <th>No.</th>
+                      <th>Name</th>
+                      <th>Image</th>
+                      <th>Update</th>
+                      <th>Delete</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {/* row 1 */}
+                    {category.map((item, index) => (
+                      <tr key={item._id}>
+                        <th>{index + 1}</th>
+                        <td>
+                          <div>
+                            <div className="font-bold">{item.name}</div>
+                          </div>
+                        </td>
+
+                        <td>
+                          <img
+                            src={item.image}
+                            alt=""
+                            className="w-24 h-12 rounded-md"
+                          />
+                        </td>
+                        <td>
+                          <Link to={`/dashboard/updateCategory/${item._id}`}>
+                            <button className="btn-ghost text-green-500 text-xl">
+                              {/* <MdSecurityUpdateGood /> */}
+                              {/* <FaEdit/> */}
+                              <FcEditImage />
+                            </button>
+                          </Link>
+                        </td>
+                        <td>
+                          <button
+                            onClick={() => handleDelete(item._id)}
+                            className="btn-ghost"
+                          >
+                            <MdDelete className="text-red-500 text-xl" />
+                          </button>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
