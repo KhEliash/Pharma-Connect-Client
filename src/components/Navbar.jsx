@@ -29,12 +29,14 @@ const Navbar = () => {
         </NavLink>
       </li>
       <li>
-        <div className="indicator">
-          <span className="indicator-item badge badge-secondary">99+</span>
-          <button className="">
-            <FaCartShopping className="text-lg"></FaCartShopping>
-          </button>
-        </div>
+        <Link to={'/cart'}>
+          <div className="indicator">
+            <span className="indicator-item badge badge-secondary">99+</span>
+            <button className="">
+              <FaCartShopping className="text-lg"></FaCartShopping>
+            </button>
+          </div>
+        </Link>
       </li>
       <li>
         <details className="dropdown">
@@ -111,7 +113,7 @@ const Navbar = () => {
                     <Link to={"/updateProfile"}>Update Profile</Link>
                   </li>
                   <li>
-                    <Link to={'dashboard'}>Dashboard</Link>
+                    <Link to={"dashboard"}>Dashboard</Link>
                   </li>
                   <li>
                     <a

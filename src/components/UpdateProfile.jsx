@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { AuthContext } from "../provider/AuthProvider";
+import { Helmet } from "react-helmet";
 
 const UpdateProfile = () => {
   const { updateUserProfile } = useContext(AuthContext);
@@ -18,6 +19,10 @@ const UpdateProfile = () => {
   };
   return (
     <div className="">
+      <Helmet>
+        <title>PharmaConnect | Update Profile</title>
+        <meta name="description" content="Nested component" />
+      </Helmet>
       <div className="w-full min-h-screen   flex items-center justify-center">
         <form
           className=" bg-base-200 p-5 rounded-xl w-2/3 my-12 shadow-md"

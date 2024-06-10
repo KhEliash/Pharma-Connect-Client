@@ -19,6 +19,7 @@ import AdAsk from "../pages/dashboard/seller/AdAsk";
 import PaymentHistoryy from "../pages/dashboard/user/PaymentHistoryy";
  import UpdateCategory from './../pages/dashboard/admin/UpdateCategory';
 import CategoryDetails from "../components/CategoryDetails";
+import Cart from "../components/Cart";
 
 const router = createBrowserRouter([
   {
@@ -48,6 +49,10 @@ const router = createBrowserRouter([
       {
         path: '/categoryDetails/:category',
         element: <CategoryDetails></CategoryDetails>
+      },
+      {
+        path: '/cart',
+        element: <Cart></Cart>
       }
       
     ],

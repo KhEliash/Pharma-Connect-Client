@@ -49,6 +49,7 @@ const CategoryDetails = () => {
           showConfirmButton: false,
           timer: 1500,
         });
+        refetch();
       } else {
         Swal.fire({
           position: "top-end",

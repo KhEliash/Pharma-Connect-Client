@@ -6,6 +6,7 @@ import { MdDelete, MdSecurityUpdateGood } from "react-icons/md";
 import { Link } from "react-router-dom";
 import { FcEditImage } from "react-icons/fc";
 import { FaEdit } from "react-icons/fa";
+import { Helmet } from "react-helmet";
 
 const ManageCategory = () => {
   const axios = useAxios();
@@ -80,6 +81,10 @@ const ManageCategory = () => {
   };
   return (
     <div>
+      <Helmet>
+        <title>PharmaConnect | Manage Category </title>
+        <meta name="description" content="Nested component" />
+      </Helmet>
       <div>
         <div className="flex justify-center flex-col items-center my-12 space-y-2">
           <h3 className="text-center">Do you wanna add category?</h3>

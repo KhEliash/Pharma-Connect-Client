@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import useAxios from "../../../others/Axios/useAxios";
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet";
 
 const AdManage = () => {
   const axios = useAxios();
@@ -66,6 +67,10 @@ const AdManage = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>PharmaConnect | Ad Manage</title>
+        <meta name="description" content="Nested component" />
+      </Helmet>
       <h2 className="text-center my-4 font-bold ">
         Choose Image for Banner slider
       </h2>

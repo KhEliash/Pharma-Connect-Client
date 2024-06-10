@@ -4,6 +4,7 @@ import { AuthContext } from "../../../provider/AuthProvider";
 import useAxios from "../../../others/Axios/useAxios";
 import Swal from "sweetalert2";
 import { useQuery } from "@tanstack/react-query";
+import { Helmet } from "react-helmet";
 
 const MedicinesManage = () => {
   const { user } = useContext(AuthContext);
@@ -68,6 +69,10 @@ const MedicinesManage = () => {
   };
   return (
     <div>
+      <Helmet>
+        <title>PharmaConnect | Medicine Manage </title>
+        <meta name="description" content="Nested component" />
+      </Helmet>
       <div className="flex justify-center flex-col items-center my-12 space-y-2">
         <h3 className="text-center">Do you wanna add a Medicine?</h3>
         {/* Open the modal using document.getElementById('ID').showModal() method */}

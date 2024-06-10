@@ -1,8 +1,13 @@
+import { Helmet } from "react-helmet";
 import { Link, Outlet } from "react-router-dom";
 
 const Dashboard = () => {
   return (
     <div className="flex w-full container mx-auto">
+      <Helmet>
+        <title>PharmaConnect | Dashboard</title>
+        <meta name="description" content="Nested component" />
+      </Helmet>
       <div className="flex flex-col w-1/4 p-3 bg-[#1E90FF] space-y-2 min-h-screen text-white">
         {/* admin routes */}
         <Link to={"adminHome"}>Admin Home</Link>
