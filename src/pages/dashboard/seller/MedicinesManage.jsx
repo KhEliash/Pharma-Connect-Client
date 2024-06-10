@@ -21,7 +21,7 @@ const MedicinesManage = () => {
     refetch,
     isLoading,
   } = useQuery({
-    queryKey: ["email", user?.email],
+    queryKey: ["medicinesSeller", user?.email],
     queryFn: async () => {
       const res = await axios.get(`/medicinesSeller/${user?.email}`);
       return res.data;

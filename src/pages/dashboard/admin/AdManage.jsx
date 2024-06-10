@@ -11,7 +11,7 @@ const AdManage = () => {
     refetch,
     isLoading,
   } = useQuery({
-    queryKey: ["email"],
+    queryKey: ["sellerAdds"],
     queryFn: async () => {
       const res = await axios.get("/sellerAdds");
       return res.data;

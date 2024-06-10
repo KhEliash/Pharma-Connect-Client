@@ -46,7 +46,7 @@ const ManageCategory = () => {
     refetch,
     isLoading,
   } = useQuery({
-    queryKey: ["email"],
+    queryKey: ["category"],
     queryFn: async () => {
       const res = await axios.get("/category");
       return res.data;

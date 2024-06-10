@@ -10,7 +10,7 @@ const ManageUsers = () => {
     refetch,
     isLoading,
   } = useQuery({
-    queryKey: ["users"],
+    queryKey: ["userss"],
     queryFn: async () => {
       const res = await axios.get("/users");
       return res.data;
