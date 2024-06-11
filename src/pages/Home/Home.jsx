@@ -1,4 +1,5 @@
 import Category from "../../components/Category";
+import Discount from "../../components/Discount";
 import Slider from "../../components/Slider";
 
  
@@ -9,6 +10,7 @@ const Home = () => {
            
             <Slider></Slider>
             <Category></Category>
+            <Discount></Discount>
         </div>
     );
 };

@@ -2,10 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import useAxios from "../others/Axios/useAxios";
 import { useContext, useState } from "react";
 import { AuthContext } from "../provider/AuthProvider";
-import { FaCross, FaSquare } from "react-icons/fa";
-import { FaDeleteLeft, FaSquareArrowUpRight } from "react-icons/fa6";
-import { FiDelete } from "react-icons/fi";
-import { FcDeleteDatabase, FcDeleteRow } from "react-icons/fc";
+ 
 import { AiOutlineCloseSquare } from "react-icons/ai";
 import { Helmet } from "react-helmet";
 
