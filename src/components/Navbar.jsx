@@ -4,8 +4,27 @@ import { useContext } from "react";
 import { AuthContext } from "../provider/AuthProvider";
 import Swal from "sweetalert2";
 import { FaCartShopping, FaShop } from "react-icons/fa6";
+import useAxios from "../others/Axios/useAxios";
+import { useQuery } from "@tanstack/react-query";
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
+  const axios = useAxios();
+  const {
+    data: myCart = [],
+    refetch,
+    isLoading,
+  } = useQuery({
+    queryKey: ["cart", user?.email],
+    queryFn: async () => {
+      const res = await axios.get(`/cart/${user?.email}`);
+      return res.data;
+    },
+    refetchInterval: 1000,
+  });
+ 
+
+
+
   const navLinks = (
     <>
       <li>
@@ -31,9 +50,9 @@ const Navbar = () => {
       <li>
         <Link to={'/cart'}>
           <div className="indicator">
-            <span className="indicator-item badge badge-secondary">99+</span>
+            <span className="indicator-item badge badge-primary">{myCart.length}</span>
             <button className="">
-              <FaCartShopping className="text-lg"></FaCartShopping>
+              <FaCartShopping className="text-xl"></FaCartShopping>
             </button>
           </div>
         </Link>

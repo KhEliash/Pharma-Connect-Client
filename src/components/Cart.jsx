@@ -5,6 +5,7 @@ import { AuthContext } from "../provider/AuthProvider";
 import { AiOutlineCloseSquare } from "react-icons/ai";
 import { Helmet } from "react-helmet";
 import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const Cart = () => {
   const { user } = useContext(AuthContext);
@@ -50,18 +51,47 @@ const Cart = () => {
   };
 
   const handleRemove = async (id) => {
-    await axios.delete(`/cart/${user?.email}/${id}`);
-    refetch();
+    await axios.delete(`/cart/${user?.email}/${id}`).then((res) => {
+      // console.log(res);
+      if (res.data.deletedCount > 0) {
+        Swal.fire({
+          title: "Deleted!",
+          text: "Your file has been deleted.",
+          icon: "success",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        refetch();
+      }
+    });
   };
 
   const handleClearCart = async () => {
-    await axios.delete(`/cart/${user?.email}`);
-    refetch();
+    await axios.delete(`/cart/${user?.email}`).then((res) => {
+      // console.log(res);
+      if (res.data.deletedCount > 0) {
+        Swal.fire({
+          title: "Deleted!",
+          text: "Your cart has been deleted.",
+          icon: "success",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        refetch();
+      }
+    });
   };
 
+  const total = myCart.reduce(
+    (total, item) =>
+      total + item.price * (quantities[item._id] || item.quantity || 1),
+    0
+  );
   const handleCheckout = () => {
-    navigate("/checkout");
+    navigate("/checkout", { state: { total } });
   };
+
+  // console.log(total);
 
   return (
     <div>

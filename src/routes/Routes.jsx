@@ -20,6 +20,7 @@ import PaymentHistoryy from "../pages/dashboard/user/PaymentHistoryy";
  import UpdateCategory from './../pages/dashboard/admin/UpdateCategory';
 import CategoryDetails from "../components/CategoryDetails";
 import Cart from "../components/Cart";
+import Checkout from "../components/Checkout";
 
 const router = createBrowserRouter([
   {
@@ -53,6 +54,10 @@ const router = createBrowserRouter([
       {
         path: '/cart',
         element: <Cart></Cart>
+      },
+      {
+        path: '/checkout',
+        element: <Checkout></Checkout>
       }
       
     ],
