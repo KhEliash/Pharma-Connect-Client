@@ -21,7 +21,7 @@ const Discount = () => {
   const discountProduct = allMedicine.filter(
     (item) => parseInt(item.discount) > 0
   );
-  console.log(discountProduct);
+//   console.log(discountProduct);
   return (
     <div>
       <h1 className="text-3xl font-bold  text-center my-24">
@@ -42,8 +42,8 @@ const Discount = () => {
           <SwiperSlide key={i._id} className=" rounded-md h-[300px]">
             <img src={i.image} alt="" className="rounded-md h-[300px] w-full" />
             <div className="absolute top-0 right-0 bg-orange-500 text-white p-4 rounded-md">
-              <h1 className="text-2xl font-bold">Name: {i.name}</h1>
-              <h1 className="text-2xl font-bold">Discount: {i.discount} %</h1>
+              <h1 className="text-sm lg:text-2xl font-bold">Name: {i.name}</h1>
+              <h1 className="text-sm lg:text-2xl font-bold">Discount: {i.discount} %</h1>
             </div>
           </SwiperSlide>
         ))}
