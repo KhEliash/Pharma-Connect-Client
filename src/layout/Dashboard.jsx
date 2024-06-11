@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { Helmet } from "react-helmet";
-import { Link, Outlet } from "react-router-dom";
+import { Link, NavLink, Outlet } from "react-router-dom";
 
 import useAxios from "../others/Axios/useAxios";
 import { useContext } from "react";
@@ -31,18 +31,60 @@ const Dashboard = () => {
 
       <div className="flex flex-col w-1/4 p-3 bg-[#1E90FF] space-y-2 min-h-screen text-white">
         {isLoading ? (
-          <h1>loading</h1>
+          <h1>loading...</h1>
         ) : (
           <>
             {userRole.role === "admin" && (
               <>
                 {/* admin routes */}
-                <Link to={"adminHome"}>Admin Home</Link>
-                <Link to={"manageUsers"}>Manage Users</Link>
-                <Link to={"manageCategory"}>Manage Category</Link>
-                <Link to={"managePayment"}>Manage Payment</Link>
-                <Link to={"salesReport"}>Sales Report</Link>
-                <Link to={"adManage"}>Advertise Manage</Link>
+                <NavLink
+                  className={({ isActive }) =>
+                    isActive ? " text-blue-500 bg-white p-1 rounded-md " : ""
+                  }
+                  to={"adminHome"}
+                >
+                  Admin Home
+                </NavLink>
+                <NavLink
+                  className={({ isActive }) =>
+                    isActive ? " text-blue-500 bg-white p-1 rounded-md " : ""
+                  }
+                  to={"manageUsers"}
+                >
+                  Manage Users
+                </NavLink>
+                <NavLink
+                  className={({ isActive }) =>
+                    isActive ? " text-blue-500 bg-white p-1 rounded-md" : ""
+                  }
+                  to={"manageCategory"}
+                >
+                  Manage Category
+                </NavLink>
+                <NavLink
+                  className={({ isActive }) =>
+                    isActive ? "text-blue-500 bg-white p-1 rounded-md " : ""
+                  }
+                  to={"managePayment"}
+                >
+                  Manage Payment
+                </NavLink>
+                <NavLink
+                  className={({ isActive }) =>
+                    isActive ? " text-blue-500 bg-white p-1 rounded-md " : ""
+                  }
+                  to={"salesReport"}
+                >
+                  Sales Report
+                </NavLink>
+                <NavLink
+                  className={({ isActive }) =>
+                    isActive ? " text-blue-500 bg-white p-1 rounded-md " : ""
+                  }
+                  to={"adManage"}
+                >
+                  Advertise Manage
+                </NavLink>
                 <hr />
                 <Link to={"/"}>Home</Link>
               </>
@@ -50,10 +92,38 @@ const Dashboard = () => {
             {userRole.role === "seller" && (
               <>
                 {/* seller routes */}
-                <Link to={"sellerHome"}>Seller Home</Link>
-                <Link to={"sellerMedicine"}>Manage Medicine</Link>
-                <Link to={"paymentHistory"}>Payment History</Link>
-                <Link to={"askForAdd"}>Ask For Ad</Link>
+                <NavLink
+                  className={({ isActive }) =>
+                    isActive ? " text-blue-500 bg-white p-1 rounded-md " : ""
+                  }
+                  to={"sellerHome"}
+                >
+                  Seller Home
+                </NavLink>
+                <NavLink
+                  className={({ isActive }) =>
+                    isActive ? " text-blue-500 bg-white p-1 rounded-md " : ""
+                  }
+                  to={"sellerMedicine"}
+                >
+                  Manage Medicine
+                </NavLink>
+                <NavLink
+                  className={({ isActive }) =>
+                    isActive ? " text-blue-500 bg-white p-1 rounded-md " : ""
+                  }
+                  to={"paymentHistory"}
+                >
+                  Payment History
+                </NavLink>
+                <NavLink
+                  className={({ isActive }) =>
+                    isActive ? " text-blue-500 bg-white p-1 rounded-md " : ""
+                  }
+                  to={"askForAdd"}
+                >
+                  Ask For Ad
+                </NavLink>
                 <hr />
                 <Link to={"/"}>Home</Link>
               </>
@@ -62,13 +132,18 @@ const Dashboard = () => {
               <>
                 {/* user routes */}
 
-                <Link to={"userPayHistory"}>Payment History</Link>
+                <NavLink
+                  className={({ isActive }) =>
+                    isActive ? " text-blue-500 bg-white p-1 rounded-md " : ""
+                  }
+                  to={"userPayHistory"}
+                >
+                  Payment History
+                </NavLink>
                 <hr />
                 <Link to={"/"}>Home</Link>
               </>
             )}
-
-            
           </>
         )}
       </div>
