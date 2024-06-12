@@ -4,7 +4,7 @@ import { AuthContext } from "../provider/AuthProvider";
 import { Helmet } from "react-helmet";
 
 const UpdateProfile = () => {
-  const { updateUserProfile } = useContext(AuthContext);
+  const { updateUserProfile ,user} = useContext(AuthContext);
   const { register, handleSubmit, reset } = useForm();
   const onSubmit = (data) => {
     console.log(data);
@@ -39,6 +39,7 @@ const UpdateProfile = () => {
               type="text"
               {...register("name", { required: true })}
               placeholder="Name"
+              defaultValue={user?.displayName}
               className="input input-bordered w-full"
             />
           </label>
@@ -50,6 +51,7 @@ const UpdateProfile = () => {
               type="text"
               {...register("photo", { required: true })}
               placeholder="Photo URL"
+              defaultValue={user?.photoURL}
               className="input input-bordered w-full"
             />
           </label>

@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import useAxios from "../others/Axios/useAxios";
 import { useQuery } from "@tanstack/react-query";
 import { BsEye } from "react-icons/bs";
@@ -10,6 +10,7 @@ import Swal from "sweetalert2";
 const CategoryDetails = () => {
   const { user } = useContext(AuthContext);
   const { category } = useParams();
+  const navigate= useNavigate();
   // console.log(category);
   const axios = useAxios();
   const {
@@ -23,9 +24,13 @@ const CategoryDetails = () => {
       return res.data;
     },
   });
-  // console.log(myCategory);
+  console.log(myCategory);
 
   const handleSelect = (item) => {
+    if(!user){
+      return  navigate('/login')
+    
+    }
     const { category, company, genericName, name, image, price, unit, _id } =
       item;
     const cartItem = {

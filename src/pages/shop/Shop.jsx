@@ -5,12 +5,14 @@ import { AuthContext } from "../../provider/AuthProvider";
 import useAxios from "../../others/Axios/useAxios";
 import Swal from "sweetalert2";
 import { FaEye } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 
 const Shop = () => {
   const { user } = useContext(AuthContext);
   // const { category } = useParams();
   // console.log(category);
   const axios = useAxios();
+  const navigate = useNavigate();
   const {
     data: allMedicine = [],
     refetch,
@@ -25,6 +27,10 @@ const Shop = () => {
   // console.log(allMedicine);
 
   const handleSelect = (item) => {
+    if(!user){
+      return  navigate('/login')
+    
+    }
     const { category, company, genericName, name, image, price, unit, _id } =
       item;
     const cartItem = {

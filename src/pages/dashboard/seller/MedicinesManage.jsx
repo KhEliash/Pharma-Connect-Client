@@ -157,7 +157,7 @@ const MedicinesManage = () => {
                     <option value="Syrups">Syrups </option>
                     <option value="Capsules">Capsules </option>
                     <option value="Injections">Injections </option>
-                    <option value="Tablets">Inhalers </option>
+                    <option value="Inhalers">Inhalers </option>
                     <option value="Creams">Creams </option>
                   </select>
                 </label>

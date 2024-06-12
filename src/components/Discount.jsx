@@ -23,7 +23,7 @@ const Discount = () => {
   );
 //   console.log(discountProduct);
   return (
-    <div>
+    <div className="mb-12">
       <h1 className="text-3xl font-bold  text-center my-24">
         Discount Products
       </h1>
@@ -39,7 +39,7 @@ const Discount = () => {
         // onSlideChange={() => console.log("slide change")}
       >
         {discountProduct.map((i) => (
-          <SwiperSlide key={i._id} className=" rounded-md h-[300px]">
+          <SwiperSlide key={i._id} className=" rounded-md h-[300px] shadow-md">
             <img src={i.image} alt="" className="rounded-md h-[300px] w-full" />
             <div className="absolute top-0 right-0 bg-orange-500 text-white p-4 rounded-md">
               <h1 className="text-sm lg:text-2xl font-bold">Name: {i.name}</h1>

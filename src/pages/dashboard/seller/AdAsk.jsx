@@ -32,6 +32,7 @@ const AdAsk = () => {
       image: data.image,
       email: user.email,
       description: data.description,
+      status: ' ',
     };
     axios.post("/sellerAdds", adItem).then((res) => {
       // console.log(res);

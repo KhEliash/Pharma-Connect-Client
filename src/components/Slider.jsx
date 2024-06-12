@@ -61,7 +61,7 @@ const Slider = () => {
               {allAdReq.map((e) => (
                 <SwiperSlide key={e._id} className="rounded-md">
                   <div className="flex bg-base-200">
-                    <div className="flex flex-1 flex-col justify-center items-center space-y-2">
+                    <div className="flex flex-1 flex-col justify-center items-center space-y-2 px-5 md:p-8">
                       <h1 className="text-5xl font-bold ">{e.name}</h1>
                       <p>{e.description}</p>
                     </div>
