@@ -51,8 +51,8 @@ Used sweet alerts/toast notifications for CRUD operations and authentication fee
 Integrated Tanstack Query for data fetching (GET methods).
 
 ## Admin Access
-- Username: admin@example.com
-- Password: admin123
+- Username: eli@gmail.com
+- Password: 123456
 
 ## Live Site URL
 [Visit the live site](https://pharma-connect-b7fd3.web.app)
