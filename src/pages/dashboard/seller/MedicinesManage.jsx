@@ -27,7 +27,7 @@ const MedicinesManage = () => {
       return res.data;
     },
   });
-  console.log(myMedicine);
+  // console.log(myMedicine);
 
   const onSubmit = (data) => {
     const medicine = {
@@ -59,7 +59,7 @@ const MedicinesManage = () => {
         }
       })
       .catch((error) => {
-        console.log(error);
+        // console.log(error);
         Swal.fire({
           icon: "error",
           title: "Oops...",

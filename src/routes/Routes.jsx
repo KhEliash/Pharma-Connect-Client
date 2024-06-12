@@ -21,6 +21,7 @@ import PaymentHistoryy from "../pages/dashboard/user/PaymentHistoryy";
 import CategoryDetails from "../components/CategoryDetails";
 import Cart from "../components/Cart";
 import Checkout from "../components/Checkout";
+import PrivateRoute from './PrivateRoute';
 
 const router = createBrowserRouter([
   {
@@ -69,49 +70,49 @@ const router = createBrowserRouter([
       // Admin Routes
       {
         path: "adminHome",
-        element: <AdminHome></AdminHome>,
+        element: <PrivateRoute><AdminHome></AdminHome></PrivateRoute>,
       },
       {
         path: "manageUsers",
-        element: <ManageUsers></ManageUsers>,
+        element: <PrivateRoute><ManageUsers></ManageUsers></PrivateRoute>,
       },
       {
         path: "manageCategory",
-        element: <ManageCategory></ManageCategory>,
+        element: <PrivateRoute><ManageCategory></ManageCategory></PrivateRoute>,
       },
       {
         path: "managePayment",
-        element: <ManagePayment></ManagePayment>,
+        element: <PrivateRoute><ManagePayment></ManagePayment></PrivateRoute>,
       },
       {
         path: "salesReport",
-        element: <SalesReport></SalesReport>,
+        element: <PrivateRoute><SalesReport></SalesReport></PrivateRoute>,
       },
       {
         path: "adManage",
-        element: <AdManage></AdManage>,
+        element: <PrivateRoute><AdManage></AdManage></PrivateRoute>,
       },
       {
         path: 'updateCategory/:id',
-        element: <UpdateCategory></UpdateCategory>
+        element: <PrivateRoute><UpdateCategory></UpdateCategory></PrivateRoute>
       },
     
       // seller routes
       {
         path: "sellerHome",
-        element: <SellerHome></SellerHome>,
+        element: <PrivateRoute><SellerHome></SellerHome></PrivateRoute>
       },
       {
         path: 'sellerMedicine',
-        element: <MedicinesManage></MedicinesManage>
+        element: <PrivateRoute><MedicinesManage></MedicinesManage></PrivateRoute>
       },
       {
         path: 'paymentHistory',
-        element: <PaymentHistory></PaymentHistory>
+        element: <PrivateRoute><PaymentHistory></PaymentHistory></PrivateRoute>
       },
       {
         path: 'askForAdd',
-        element: <AdAsk></AdAsk>
+        element: <PrivateRoute><AdAsk></AdAsk></PrivateRoute>
       },
       // user routes
       {

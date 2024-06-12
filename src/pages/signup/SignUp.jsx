@@ -18,7 +18,7 @@ const SignUp = () => {
     const role = e.target.role.value;
     createUser(email, password)
       .then((result) => {
-        console.log(result.user);
+        // console.log(result.user);
         updateUserProfile(name, photo).then(() => {
           const userInfo = {
             name: name,
@@ -46,7 +46,7 @@ const SignUp = () => {
       })
 
       .catch((error) => {
-        console.log(error.message);
+        // console.log(error.message);
         Swal.fire({
           icon: "error",
           title: "Oops...",

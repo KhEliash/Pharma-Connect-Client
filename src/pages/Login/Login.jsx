@@ -20,7 +20,7 @@ const Login = () => {
   const onSubmit = (data) => {
     signIn(data.email, data.password)
       .then((res) => {
-        console.log(res);
+        // console.log(res);
         Swal.fire({
           position: "top-end",
           icon: "success",
@@ -32,7 +32,7 @@ const Login = () => {
         reset();
       })
       .catch((error) => {
-        console.log(error.message);
+        // console.log(error.message);
         Swal.fire({
           icon: "error",
           title: "Oops...",
@@ -41,12 +41,12 @@ const Login = () => {
         });
       });
 
-    console.log(data);
+    // console.log(data);
   };
   const handleGoogle =()=>{
     googleLogIn()
    .then((res) => {
-     console.log(res);
+    //  console.log(res);
      Swal.fire({
        position: "top-end",
        icon: "success",
@@ -65,7 +65,7 @@ const Login = () => {
      
    })
    .catch((error)=>{
-     console.log(error.message);
+    //  console.log(error.message);
      Swal.fire({
        icon: "error",
        title: "Oops...",

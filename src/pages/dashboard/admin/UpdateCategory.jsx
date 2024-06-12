@@ -23,7 +23,7 @@ const UpdateCategory = () => {
     axios
       .put(`/category/${id}`, info)
       .then((res) => {
-        console.log(res);
+        // console.log(res);
         if (res.data.modifiedCount > 0) {
           Swal.fire({
             position: "top-end",

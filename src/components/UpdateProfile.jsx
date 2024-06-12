@@ -7,10 +7,10 @@ const UpdateProfile = () => {
   const { updateUserProfile ,user} = useContext(AuthContext);
   const { register, handleSubmit, reset } = useForm();
   const onSubmit = (data) => {
-    console.log(data);
+    // console.log(data);
     updateUserProfile(data.name, data.photo)
       .then((res) => {
-        console.log(res);
+        // console.log(res);
         reset();
       })
       .catch((error) => {
