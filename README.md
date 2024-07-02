@@ -1,7 +1,47 @@
 # PharmaConnect
-
 ## Project Overview
 This project is a comprehensive web application designed for a multi-vendor e-commerce platform specializing in the sale of medicines and healthcare products. Developed using the MERN stack (MongoDB, Express.js, React.js, and Node.js), it offers a seamless user experience for purchasing medications, submitting queries, and receiving expert advice.
+
+## Getting Started
+
+To get a local copy up and running follow these simple steps.
+
+### Prerequisites
+
+Make sure you have Node.js and npm installed.
+
+### Installation
+
+1. Clone the repo
+   ```sh
+   git clone https://github.com/yourusername/your-project.git
+   cd your-project
+   ```
+2. Install NPM packages
+   ```sh
+   npm install
+   ```
+4. Set up Environment Variables
+   * Create a `.env` file in the root directory.
+   * Define environment variables such as database connection strings and API keys.
+### Running Locally
+  To run the project locally, follow these steps:
+   * Run the frontend (React):
+```sh
+   npm start
+```
+ * Run the backend (Express server)
+   ```sh
+   npm run server
+   ```
+     
+## Live Site URL
+[Visit the live site](https://pharma-connect-b7fd3.web.app)
+
+
+## Admin Access
+- Username: eli@gmail.com
+- Password: 123456
 
 ## Key Features
 ### 1. Responsive Design: 
@@ -50,22 +90,10 @@ Implemented pagination, sorting, and search functionalities for medicine tables.
 Used sweet alerts/toast notifications for CRUD operations and authentication feedback.
 Integrated Tanstack Query for data fetching (GET methods).
 
-## Admin Access
-- Username: eli@gmail.com
-- Password: 123456
 
-## Live Site URL
-[Visit the live site](https://pharma-connect-b7fd3.web.app)
 
 ## Repository Links
 - Client Side GitHub Repository: [Client Repo](https://github.com/programming-hero-web-course1/b9a12-client-side-KhEliash)
 - Server Side GitHub Repository: [Server Repo](https://github.com/programming-hero-web-course1/b9a12-server-side-KhEliash)
 
-## Additional Information
-- Environment Variables: Firebase config keys and MongoDB credentials are hidden using environment variables.
-- No Lorem Ipsum: All text content is meaningful and relevant.
-- PDF/Excel Downloads: Sales reports can be downloaded in various formats.
-- React Hook Form: Used for managing form state efficiently.
-- React Helmet: Used for managing document head.
-
-This project aims to provide a robust and user-friendly platform for purchasing medicines online, ensuring a smooth and secure shopping experience for users and efficient management tools for admins and sellers.
+ 
